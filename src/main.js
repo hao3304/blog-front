@@ -10,13 +10,19 @@ import "iview/dist/styles/iview.css"
 Vue.config.productionTip = false
 Vue.use(iView)
 
+router.beforeEach((to, from, next) => {
+  let token = localStorage.getItem("token");
+  if(to.fullPath !='/login'&& !token) {
+    return next({path:"/login"})
+  }
+  next();
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App },
-  mounted(){
-
-  }
+  components: { App }
 })
+

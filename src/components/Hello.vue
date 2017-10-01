@@ -21,12 +21,19 @@
 </template>
 
 <script>
+  import {getUsers} from '../module/service'
+
 export default {
   name: 'hello',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  mounted(){
+    getUsers().then(rep=>{
+      debugger
+    })
   }
 }
 </script>

@@ -47,8 +47,13 @@ export default {
   },
   methods:{
     onSubmit(e){
-      doLogin(this.form).then(rep=>{
-        debugger
+      doLogin(this.form).then(({data})=>{
+        if(data.Code == 0) {
+            let {Response} = data;
+            localStorage["token"] = Response.Token;
+            localStorage["expires"] = Response.Expires;
+            this.$router.push('/');
+          }
       })
     }
   }
